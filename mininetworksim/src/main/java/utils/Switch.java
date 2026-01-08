@@ -14,6 +14,20 @@ public class Switch extends Device{
     private Packet packet;  //for now a switch can only handle a single packet at a time
     private ArrayList<Integer> ports;
     private HashMap<MAC, Integer> table;
+    private HashMap<Integer, Device> connections;
+
+    public Switch(int portnumber)
+    {
+        //generate ports
+    }
+
+    public void addConnection(int port, Device device) {connections.put(port, device);}
+    public void removeConnection(int port)
+    {
+
+    }
+
+
     public static void recievePacket()
     {
 
