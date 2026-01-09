@@ -18,14 +18,23 @@ public class Switch extends Device{
 
     public Switch(int portnumber)
     {
-        //generate ports
+        for (int i = 1; i < portnumber + 1; i++) ports.add(i);
     }
 
-    public void addConnection(int port, Device device) {connections.put(port, device);}
-    public void removeConnection(int port)
+    public void addConnection(Device device) 
     {
-
+        //we look through the ports, if a port is not associated with a device, we can assign it to the new device. 
+        for (Integer p : ports)
+        {
+            if (!connections.containsKey(p))
+            {
+                connections.put(p, device);
+                return;
+            }
+        }
+        //System.err.println("No ports available! ");
     }
+    public void removeConnection(int port) {connections.remove(port);}
 
 
     public static void recievePacket()

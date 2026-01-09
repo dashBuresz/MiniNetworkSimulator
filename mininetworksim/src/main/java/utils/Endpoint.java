@@ -4,8 +4,6 @@ import java.util.HashMap;
 
 public class Endpoint extends Device{
     private String name;
-    private IP ipAddr;
-    private MAC macAddr;
     //DNS resolution, the endpoint first gets the destination IP address (dns query for a domain name)
     //the device checks it's ARP cache for said IP, if the IP isn't found, it sends and ARP Request, 
     //broadcasting to the entire local network: Who has [destination IP]? tell [my IP]
