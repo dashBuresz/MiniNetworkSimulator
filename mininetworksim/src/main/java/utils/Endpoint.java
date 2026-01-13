@@ -8,7 +8,17 @@ public class Endpoint extends Device{
     //the device checks it's ARP cache for said IP, if the IP isn't found, it sends and ARP Request, 
     //broadcasting to the entire local network: Who has [destination IP]? tell [my IP]
     //ARP Reply(Unicast): the device with the IP responds directly with its MAC address
+
+    public Endpoint createEndpoint(String endpointName)
+    {
+        Endpoint endpoint = new Endpoint();
+        endpoint.setName(endpointName);
+        return endpoint;
+    }
+    //TODO configure IP by sending DHCP Discover
+
     private HashMap<IP, MAC> arpCache;
+    
     public static void sendPacket()
     {
 
@@ -16,5 +26,9 @@ public class Endpoint extends Device{
     public static void recievePacket()
     {
 
+    }
+    public void setName(String newName)
+    {
+        name = newName;
     }
 }
