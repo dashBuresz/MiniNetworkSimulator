@@ -13,4 +13,8 @@ public class DNS {
     {
         localCache.put(device, device.ip());
     }
+    public void removeDevice(Device device)
+    {
+        localCache.remove(device);
+    }
 }
