@@ -16,6 +16,10 @@ public class Endpoint extends Device{
         return endpoint;
     }
     //TODO configure IP by sending DHCP Discover
+    public void dhcpDiscover()
+    {
+        
+    }
 
     private HashMap<IP, MAC> arpCache;
     
