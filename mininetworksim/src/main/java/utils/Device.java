@@ -2,8 +2,10 @@ package utils;
 
 public abstract class Device {
     //TODO implement DHCP
+
     private MAC macAddr;
     private IP ipAddr;
+    private IP networkAddr;
 
     public MAC mac() {return macAddr;}
     public IP ip() {return ipAddr;}
@@ -13,7 +15,10 @@ public abstract class Device {
         macAddr = MAC.createMAC();
         //initially all devices get a local IP address
     }
-    
+    public static void sendPacket(IP destination)
+    {
+        
+    }
     //do we need this? or just a dhcp discover call?
     public void setIP(IP ip)
     {

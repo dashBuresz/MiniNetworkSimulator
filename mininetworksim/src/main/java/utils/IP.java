@@ -28,6 +28,13 @@ public class IP {
         ip.setSubnetMask("255.255.255.0");
         return ip;
     }
+    public static IP broadcast()
+    {
+        IP ip = new IP();
+        ip.setType(IPType.LOCAL);
+        ip.setSubnetMask("255.255.255.0");
+        return ip;
+    }
     public boolean isLoopBackInterface()
     {
         //TODO
@@ -54,5 +61,9 @@ public class IP {
     public void setType(IPType ipType)
     {
         type = ipType;
+    }
+    public void setAddress(String newAddress)
+    {
+        address = newAddress;
     }
 }

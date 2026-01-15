@@ -13,20 +13,14 @@ public class Endpoint extends Device{
     {
         Endpoint endpoint = new Endpoint();
         endpoint.setName(endpointName);
+        //TODO configure IP by sending DHCP Discover
         return endpoint;
     }
-    //TODO configure IP by sending DHCP Discover
-    public void dhcpDiscover()
-    {
-        
-    }
+    
 
     private HashMap<IP, MAC> arpCache;
     
-    public static void sendPacket()
-    {
-
-    }
+    
     public static void recievePacket()
     {
 
