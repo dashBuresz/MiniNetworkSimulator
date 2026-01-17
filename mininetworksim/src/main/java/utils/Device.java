@@ -3,24 +3,24 @@ package utils;
 public abstract class Device {
     //TODO implement DHCP
 
-    private MAC macAddr;
-    private IP ipAddr;
-    private IP networkAddr;
+    private String macAddr;
+    private int ipAddr;
+    private int networkAddr;
 
-    public MAC mac() {return macAddr;}
-    public IP ip() {return ipAddr;}
+    public String mac() {return macAddr;}
+    public int ip() {return ipAddr;}
 
     public Device() 
     {
-        macAddr = MAC.createMAC();
+        macAddr = MAC.generateMACAddress();
         //initially all devices get a local IP address
     }
-    public static void sendPacket(IP destination)
+    public static void sendPacket(int destination)
     {
         
     }
     //do we need this? or just a dhcp discover call?
-    public void setIP(IP ip)
+    public void setIP(int ip)
     {
         ipAddr = ip;
     }

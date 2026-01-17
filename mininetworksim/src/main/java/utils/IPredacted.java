@@ -2,7 +2,7 @@ package utils;
 
 import java.util.Random;
 
-public class IP {
+public class IPredacted {
     //24 bit address
     //TODO might need to implement a utility class for binary and decimal IP, in order for the subnet mask to work correctly. 
     //should have a subnet mask
@@ -16,21 +16,21 @@ public class IP {
     private String address;
     private String subnetMask;
     private IPType type;
-    private IP()
+    private IPredacted()
     {
         createIPString();
         subnetMask = "0.0.0.0";
     }
-    public static IP createLocalIP()
+    public static IPredacted createLocalIP()
     {
-        IP ip = new IP();
+        IPredacted ip = new IPredacted();
         ip.setType(IPType.LOCAL);
         ip.setSubnetMask("255.255.255.0");
         return ip;
     }
-    public static IP broadcast()
+    public static IPredacted broadcast()
     {
-        IP ip = new IP();
+        IPredacted ip = new IPredacted();
         ip.setType(IPType.LOCAL);
         ip.setSubnetMask("255.255.255.0");
         return ip;

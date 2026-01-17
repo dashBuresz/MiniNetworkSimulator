@@ -2,24 +2,24 @@ package utils;
 
 public class Packet {
 
-    private IP sourceIP;
-    private IP destinationIP;
+    private Integer sourceIP;
+    private Integer destinationIP;
 
-    private MAC sourceMAC;
-    private MAC destinationMAC;
+    private String sourceMAC;
+    private String destinationMAC;
 
     private Packet(){}
 
-    public Packet(IP sourceIP, MAC sourceMAC)
+    public Packet(Integer sourceIP, String sourceMAC)
     {
         this.sourceIP = sourceIP;
         this.sourceMAC = sourceMAC;
     }
-    public void setDestIP(IP destination) {destinationIP = destination;}
-    public void setDestMAC(MAC destination) {destinationMAC = destination;}
+    public void setDestIP (int destination) {destinationIP = destination;}
+    public void setDestMAC(String destination) {destinationMAC = destination;}
 
-    public IP getSourceIP() {return sourceIP;}
-    public MAC getSourceMAC() {return sourceMAC;}
-    public IP getDestIP() {return destinationIP;}
-    public MAC getDestMAC() {return destinationMAC;}
+    public int  getSourceIP() {return sourceIP;}
+    public String getSourceMAC() {return sourceMAC;}
+    public int getDestIP() {return destinationIP;}
+    public String getDestMAC() {return destinationMAC;}
 }

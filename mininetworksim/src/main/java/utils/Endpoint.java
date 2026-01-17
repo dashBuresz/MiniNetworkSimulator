@@ -18,7 +18,7 @@ public class Endpoint extends Device{
     }
     
 
-    private HashMap<IP, MAC> arpCache;
+    private HashMap<Integer, String> arpCache;
     
     
     public static void recievePacket()
