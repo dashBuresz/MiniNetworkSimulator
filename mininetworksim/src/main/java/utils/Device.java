@@ -25,7 +25,7 @@ public abstract class Device {
     }
     public static void recievePacket()
     {
-
+        //TODO implement and figure out how this  is going to work
     }
     //do we need this? or just a dhcp discover call?
     public void setIP(int[] ip)

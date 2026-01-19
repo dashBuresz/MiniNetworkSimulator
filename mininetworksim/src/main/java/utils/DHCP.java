@@ -12,6 +12,8 @@ public class DHCP {
         destination[2] = 0b11111111;
         destination[3] = 0b11111111;
         Packet message = new Packet(device.ip(), device.mac());
+        //TODO what should be the message sent?
+        
         device.sendPacket(destination, message);
     }
     public static void offer()

@@ -1,6 +1,7 @@
 package utils;
 
 public class DHCPServer {
+    //implement enum for dynamic, automatic and manual IP assignment
     //this class implements a DHCP server. 
     //a dhcp server listens for DHCP messages, and responds accordingly
     //- what does a DHCP server need to know about?
