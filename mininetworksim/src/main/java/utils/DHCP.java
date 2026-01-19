@@ -6,6 +6,13 @@ public class DHCP {
         /*
         From 0.0.0.0 to 255.255.255.255
          */
+        int[] destination = new int[4];
+        destination[0] = 0b11111111;
+        destination[1] = 0b11111111;
+        destination[2] = 0b11111111;
+        destination[3] = 0b11111111;
+        Packet message = new Packet(device.ip(), device.mac());
+        device.sendPacket(destination, message);
     }
     public static void offer()
     {

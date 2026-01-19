@@ -3,6 +3,8 @@ package utils;
 import java.util.ArrayList;
 
 public class Network {
+    //TODO you need to implement time ticking FAHHHH
+    private int address;
     private static ArrayList<Device> devices;
     private Network()
     {
@@ -13,11 +15,12 @@ public class Network {
         Network network = new Network();
         return network;
     }
-    public void addDevice(Device device)
+    public void connectDevice(Device device)
     {
         devices.add(device);
+        DHCP.discover(device);
     }
-    public void removeDevice(Device device)
+    public void disconnectDevice(Device device)
     {
         devices.remove(device);
     }
