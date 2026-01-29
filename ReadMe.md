@@ -29,7 +29,8 @@ As if now the basic structure and background logic of the project is in question
     - should I write methods, and or implement utility classes/subclasses, for operations on addresses like comparing addresses
 - [ ] How should routing protocols be implemented?
     - link state or distance vector method?
-> [!IMPORTANT]
+> [!WARNING]
+> Needs to be implemented
 - [ ] **Implement Time Ticking in Network class**
     - this will make or break the simulator
 
