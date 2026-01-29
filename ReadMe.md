@@ -29,3 +29,13 @@ As if now the basic structure and background logic of the project is in question
     - should I write methods, and or implement utility classes/subclasses, for operations on addresses like comparing addresses
 - How should routing protocols be implemented?
     - link state or distance vector method?
+
+## *NEW* IP stack considerations
+- IP Header
+    - Do I need an IP header class that contains all necessary information when sending a packet?
+- UDP
+    - should I also create a separate class for this?
+    - UDP needs ports, this means ports on all devices should be implemented
+        - separate PORT class to handle port related operations or can the device class itself handle that?
+- ICMP
+    - What way should it be implemented

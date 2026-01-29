@@ -9,6 +9,7 @@ public class Packet {
     private String destinationMAC;
 
     //TODO implement a way to send universal packets, with universal payloads, meaning the format of a payload might change from packet to packet
+    
     //TODO ICMP needs to be implemented
     
 
