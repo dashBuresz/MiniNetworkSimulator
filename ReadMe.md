@@ -31,7 +31,9 @@ As if now the basic structure and background logic of the project is in question
     - link state or distance vector method?
 - **Implement Time Ticking in Network class**
     - this will make or break the simulator
-## ==NEW== IP stack considerations
+> [!IMPORTANT]
+> NEW additions
+## IP stack considerations
 - IP Header
     - Do I need an IP header class that contains all necessary information when sending a packet?
 - UDP
@@ -43,7 +45,8 @@ As if now the basic structure and background logic of the project is in question
 - Packages
     - decided to use a Protocol class that each protocol inherits, this way we can store all active protocols in a package or exchange in a Protocol header. 
 ### Where are we at?
-Currently ongoing work is on the DHCPServer, DHCP, Device, Package classes 
+> [!NOTE]
+> Currently ongoing work is on the DHCPServer, DHCP, Device, Package classes 
 - DHCPServer
     - Implementing a way where we store offered and assigned IP addersses by the devices MAC - HashMap?
 - DHCP
