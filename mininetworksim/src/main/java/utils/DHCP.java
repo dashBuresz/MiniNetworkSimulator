@@ -1,6 +1,6 @@
 package utils;
 
-public class DHCP {
+public class DHCP extends Protocol{
     
 
 

@@ -4,14 +4,14 @@ public abstract class Device {
     //TODO implement DHCP
 
     private String macAddr;
-    private int[] ipAddr;
+    private int[] ipAddr = new int[4];
+    private int[] defaultGateWay = new int[4];
 
     public String mac() {return macAddr;}
     public int[] ip() {return ipAddr;}
 
     public Device() 
     {
-        ipAddr = new int[4];
         ipAddr[0] = 0b00000000;
         ipAddr[1] = 0b00000000;
         ipAddr[2] = 0b00000000;

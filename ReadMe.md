@@ -17,20 +17,20 @@ As if now the basic structure and background logic of the project is in question
     - We'll see how feaasible this is, but if it can be done it will be. 
 7. Release
     - Host the project on github, announce it on LinkedIn all that good stuff. 
-## TODOs
+## Basic implementation question TODOs
 > figure these out, or ask others opinions about this.  
-- should I switch from this kind of approach to intead of the the current one representing the different headers with classes?
-    - so instead of IP class there would be an IP header class, the DHCP class would be split into a DHCP server class and a DHCP header class and so on. 
-- how do you want to make DHCP work?
-    - what does DHCP do?
-    - how do DHCP interactions start?
-    - how should the DHCP discover call interact with the IP class?
-- how do you want IP and MAC addresses to interact?
+- ~should I switch from this kind of approach to intead of the the current one representing the different headers with classes?~
+    - ~so instead of IP class there would be an IP header class, the DHCP class would be split into a DHCP server class and a DHCP header class and so on. ~
+- ~how do you want to make DHCP work?~
+    - ~what does DHCP do?~
+    - ~how do DHCP interactions start?~
+    - ~how should the DHCP discover call interact with the IP class?~
+- ~how do you want IP and MAC addresses to interact?~
     - should I write methods, and or implement utility classes/subclasses, for operations on addresses like comparing addresses
 - How should routing protocols be implemented?
     - link state or distance vector method?
 
-## *NEW* IP stack considerations
+## **NEW** IP stack considerations
 - IP Header
     - Do I need an IP header class that contains all necessary information when sending a packet?
 - UDP
@@ -39,6 +39,17 @@ As if now the basic structure and background logic of the project is in question
         - separate PORT class to handle port related operations or can the device class itself handle that?
 - ICMP
     - What way should it be implemented
-
+- Packages
+    - decided to use a Protocol class that each protocol inherits, this way we can store all active protocols in a package or exchange in a Protocol header. 
 ### Where are we at?
-currently ongoing work is on the DHCPServer, DHCP, Device classes 
+Currently ongoing work is on the DHCPServer, DHCP, Device, Package classes 
+- DHCPServer
+    - Implementing a way where we store offered and assigned IP addersses by the devices MAC - HashMap?
+- DHCP
+    - Implementation of the DHCP messages
+- Device
+    - Addition of all necessary functionality, implementation of the sendPacket and recievePacket methods
+- Package
+    - Implementing the universal protocol header vision. 
+        - Should it be an ArrayList of all active protocols
+        - Or should it be that so each protocol has a reference to a protocol that can or could be layered into it? 

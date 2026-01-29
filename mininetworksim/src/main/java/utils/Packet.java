@@ -4,7 +4,7 @@ public class Packet {
 
     private int[] sourceIP;
     private int[] destinationIP;
-
+    private Protocol header;
     private String sourceMAC;
     private String destinationMAC;
 
