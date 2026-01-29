@@ -29,8 +29,9 @@ As if now the basic structure and background logic of the project is in question
     - should I write methods, and or implement utility classes/subclasses, for operations on addresses like comparing addresses
 - How should routing protocols be implemented?
     - link state or distance vector method?
-
-## **NEW** IP stack considerations
+- **Implement Time Ticking in Network class**
+    - this will make or break the simulator
+## ==NEW== IP stack considerations
 - IP Header
     - Do I need an IP header class that contains all necessary information when sending a packet?
 - UDP
