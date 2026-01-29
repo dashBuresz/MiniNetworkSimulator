@@ -1,6 +1,10 @@
 package utils;
 
 public class DHCP {
+    
+
+
+
     public static void discover(Device device)
     {
         /*
@@ -16,7 +20,7 @@ public class DHCP {
         
         device.sendPacket(destination, message);
     }
-    public static void offer()
+    public static void offer(Device dhcpServer)
     {
         /*
         to 255.255.255.255 from DHCP server address
@@ -26,8 +30,23 @@ public class DHCP {
         - DHCP Server address
         - MAC address of the device that requested an IP
          */
+        int[] destination = new int[4];
+        destination[0] = 0b11111111;
+        destination[1] = 0b11111111;
+        destination[2] = 0b11111111;
+        destination[3] = 0b11111111;
+        //TODO this is where we find a suitable IP address and we offer it to the device that requested the IP
+        /*
+        message has 
+        - offered IP
+        - lease timeframe
+        - DHCP server address
+        - MAC address of the device that requested the IP
+        */
+        Packet message = new Packet(dhcpServer.ip(), dhcpServer.mac());
+        dhcpServer.sendPacket(destination, message);
     }
-    public static void request()
+    public static void request(Device device)
     {
         /*
         The Endpoint requests one of the offers to be assigned to them
@@ -37,7 +56,7 @@ public class DHCP {
         - Requested IP
         - DHCP Server address
         */
-
+        
     }
     public static void acknowledge()
     {

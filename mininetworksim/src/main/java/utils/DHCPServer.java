@@ -1,6 +1,6 @@
 package utils;
 
-public class DHCPServer {
+public class DHCPServer extends Device{
     //implement enum for dynamic, automatic and manual IP assignment
     //this class implements a DHCP server. 
     //a dhcp server listens for DHCP messages, and responds accordingly

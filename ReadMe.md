@@ -39,3 +39,6 @@ As if now the basic structure and background logic of the project is in question
         - separate PORT class to handle port related operations or can the device class itself handle that?
 - ICMP
     - What way should it be implemented
+
+### Where are we at?
+currently ongoing work is on the DHCPServer, DHCP, Device classes 
