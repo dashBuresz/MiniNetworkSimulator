@@ -19,21 +19,22 @@ As if now the basic structure and background logic of the project is in question
     - Host the project on github, announce it on LinkedIn all that good stuff. 
 ## Basic implementation question TODOs
 > figure these out, or ask others opinions about this.  
-- ~should I switch from this kind of approach to intead of the the current one representing the different headers with classes?~
-    - ~so instead of IP class there would be an IP header class, the DHCP class would be split into a DHCP server class and a DHCP header class and so on. ~
-- ~how do you want to make DHCP work?~
-    - ~what does DHCP do?~
-    - ~how do DHCP interactions start?~
-    - ~how should the DHCP discover call interact with the IP class?~
-- ~how do you want IP and MAC addresses to interact?~
+- [x] should I switch from this kind of approach to intead of the the current one representing the different headers with classes?
+    - so instead of IP class there would be an IP header class, the DHCP class would be split into a DHCP server class and a DHCP header class and so on. 
+- [x] how do you want to make DHCP work?
+    - what does DHCP do?
+    - how do DHCP interactions start?
+    - how should the DHCP discover call interact with the IP class?
+- [x] how do you want IP and MAC addresses to interact?
     - should I write methods, and or implement utility classes/subclasses, for operations on addresses like comparing addresses
-- How should routing protocols be implemented?
+- [ ] How should routing protocols be implemented?
     - link state or distance vector method?
 - **Implement Time Ticking in Network class**
     - this will make or break the simulator
+
+## IP stack considerations
 > [!IMPORTANT]
 > NEW additions
-## IP stack considerations
 - IP Header
     - Do I need an IP header class that contains all necessary information when sending a packet?
 - UDP
