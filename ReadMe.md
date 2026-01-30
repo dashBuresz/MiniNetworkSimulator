@@ -61,5 +61,5 @@ As if now the basic structure and background logic of the project is in question
         - Should it be an ArrayList of all active protocols
         - Or should it be that so each protocol has a reference to a protocol that can or could be layered into it? 
 ### Resources
-[Video explaining a simple network and packets](https://youtu.be/aFR1kKKJoic?si=QgujDzxMpA8USnmE)
-[Video explaining the same thing a little better](https://youtu.be/zhlMLRNY5-4?si=qoNrfjNCqNaoU4eM)
+- [Video explaining a simple network and packets](https://youtu.be/aFR1kKKJoic?si=QgujDzxMpA8USnmE)
+- [Video explaining the same thing a little better](https://youtu.be/zhlMLRNY5-4?si=qoNrfjNCqNaoU4eM)
