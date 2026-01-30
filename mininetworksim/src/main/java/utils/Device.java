@@ -21,6 +21,8 @@ public abstract class Device {
     }
     public static void sendPacket(int[] destination, Packet payload)
     {
+        //When sending a packet we know the destination IP, the default gateway interface IP and MAC
+        //The packet thats in a frame is sent to the switch (network IP) 
         //TODO implement and figure out how this  is going to work
     }
     public static void recievePacket()
