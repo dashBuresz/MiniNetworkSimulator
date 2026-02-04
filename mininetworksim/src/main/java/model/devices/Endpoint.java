@@ -3,6 +3,7 @@ package model.devices;
 import java.util.HashMap;
 
 import model.layer2.Frame;
+import model.layer2.Layer2Port;
 
 public class Endpoint extends Device{
     private String name;
@@ -24,7 +25,7 @@ public class Endpoint extends Device{
     private HashMap<Integer, String> arpCache;
     
     
-    public void recieveFrame(Frame frame)
+    public void recieveFrame(Frame frame, Layer2Port port)
     {
         
     }

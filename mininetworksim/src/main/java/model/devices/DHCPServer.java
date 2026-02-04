@@ -1,6 +1,7 @@
 package model.devices;
 
 import model.layer2.Frame;
+import model.layer2.Layer2Port;
 
 public class DHCPServer extends Device{
     //implement enum for dynamic, automatic and manual IP assignment
@@ -27,7 +28,7 @@ public class DHCPServer extends Device{
         //maybe check that serverAddress is a valid IP address (4 octets)
         this.serverAddress = serverAddress;
     }
-    public void recieveFrame(Frame frame)
+    public void recieveFrame(Frame frame, Layer2Port port)
     {
         
     }

@@ -1,7 +1,6 @@
 package model;
 
 import model.devices.Device;
-import model.layer3.Packet;
 
 public class DHCP extends Protocol{
     
@@ -18,10 +17,10 @@ public class DHCP extends Protocol{
         destination[1] = 0b11111111;
         destination[2] = 0b11111111;
         destination[3] = 0b11111111;
-        Packet message = new Packet(device.ip(), device.mac());
+        //Packet message = new Packet(device.ip(), device.mac());
         //TODO what should be the message sent?
         
-        device.sendPacket(destination, message);
+        //device.sendPacket(destination, message);
     }
     public static void offer(Device dhcpServer)
     {
@@ -46,8 +45,8 @@ public class DHCP extends Protocol{
         - DHCP server address
         - MAC address of the device that requested the IP
         */
-        Packet message = new Packet(dhcpServer.ip(), dhcpServer.mac());
-        dhcpServer.sendPacket(destination, message);
+        //Packet message = new Packet(dhcpServer.ip(), dhcpServer.mac());
+        //dhcpServer.sendPacket(destination, message);
     }
     public static void request(Device device)
     {

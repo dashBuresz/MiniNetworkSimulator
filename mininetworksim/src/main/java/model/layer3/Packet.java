@@ -27,7 +27,7 @@ public class Packet {
     //TODO ICMP needs to be implemented
     
 
-    private Packet(){}
+    //private Packet(){}
 
     public Packet(int[] sourceIP)
     {

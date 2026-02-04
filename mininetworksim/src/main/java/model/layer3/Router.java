@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import model.devices.Device;
 import model.layer2.Frame;
+import model.layer2.Layer2Port;
 
 public class Router extends Device{
     //reads destination IP, looks up the best path --> routing table
@@ -11,7 +12,7 @@ public class Router extends Device{
     //assigns unique local IP addresses
     //TODO implement DHCP
     private ArrayList<Device> connections;
-    public void recieveFrame(Frame frame)
+    public void recieveFrame(Frame frame, Layer2Port port)
     {
 
     }

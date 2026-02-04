@@ -6,9 +6,9 @@ import model.devices.Device;
  * This class represents a layer 2 port in a network device, representing the connection points in the data-link and physical layers. 
  */
 public class Layer2Port {
-    int id;
-    Device owner;
-    Layer2Link link;
+    private int id;
+    private Device owner;
+    private Layer2Link link;
     public Layer2Port(int portid, Device host)
     {
         id = portid;
@@ -23,7 +23,7 @@ public class Layer2Port {
     }
     public void recieve(Frame frame)
     {
-        owner.recieveFrame(frame);
+        owner.recieveFrame(frame, this);
     }
     //getter setter
     public int id() {return id;}

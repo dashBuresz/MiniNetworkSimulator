@@ -14,7 +14,6 @@ public class Switch extends Device{
     //the intended device recieves the packet, 
     //responds and the switch learns and stores the new MAC address and port in the table. 
 
-    //private Frame frame;  //for now a switch can only handle a single frame at a time
     private HashMap<Layer2Port, String> macAddrTable;
     private ArrayDeque<Frame> frames;
 
@@ -38,11 +37,11 @@ public class Switch extends Device{
 
 
     @Override
-    public void recieveFrame(Frame frame)
+    public void recieveFrame(Frame frame, Layer2Port port)
     {
         //we get the frame, we have to peek inside to see what we should do 
         frames.add(frame);
-
+        macAddrTable.put(port, frame.sourceMAC());
     }
     public void handleFrames()
     {
@@ -59,11 +58,16 @@ public class Switch extends Device{
         }
         else {
             //we flood all the ports except the sourceport with the frame
-            
+            //
+            for (Map.Entry<Layer2Port, String> entry : macAddrTable.entrySet()) {
+                Layer2Port port = entry.getKey();
+                String mac = entry.getValue();
+                if (!mac.equals(frame.sourceMAC()) && port.link() != null) port.send(frame);
+            }
         }
     }
     public void forwardFrame(Frame frame)
     {
-        
+        //might be unneeded
     }
 }
