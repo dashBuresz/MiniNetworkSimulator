@@ -2,11 +2,23 @@ package utils;
 
 public class Packet {
 
+    /*
+    for the header we would have
+    version
+    IHL
+    ToS
+    Total length
+    Ident, flags, fragment offset
+    TTL
+    Protocol
+    Header checksum
+    source ip
+    destination ip
+     */
     private int[] sourceIP;
     private int[] destinationIP;
-    private Protocol header;
-    private String sourceMAC;
-    private String destinationMAC;
+    private Data data; 
+    
 
     //TODO implement a way to send universal packets, with universal payloads, meaning the format of a payload might change from packet to packet
     
@@ -15,16 +27,12 @@ public class Packet {
 
     private Packet(){}
 
-    public Packet(int[] sourceIP, String sourceMAC)
+    public Packet(int[] sourceIP)
     {
         this.sourceIP = sourceIP;
-        this.sourceMAC = sourceMAC;
     }
     public void setDestIP (int[] destination) {destinationIP = destination;}
-    public void setDestMAC(String destination) {destinationMAC = destination;}
-
+    
     public int[]  getSourceIP() {return sourceIP;}
-    public String getSourceMAC() {return sourceMAC;}
     public int[] getDestIP() {return destinationIP;}
-    public String getDestMAC() {return destinationMAC;}
 }

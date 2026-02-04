@@ -25,4 +25,8 @@ public class DHCPServer extends Device{
         //maybe check that serverAddress is a valid IP address (4 octets)
         this.serverAddress = serverAddress;
     }
+    public void recieveFrame(Frame frame)
+    {
+        
+    }
 }

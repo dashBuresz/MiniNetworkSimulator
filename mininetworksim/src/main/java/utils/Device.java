@@ -1,11 +1,16 @@
 package utils;
 
-public abstract class Device {
-    //TODO implement DHCP
+import java.util.ArrayList;
 
+public abstract class Device {
+    //Network Interface layer 2
     private String macAddr;
+    private ArrayList<Layer2Port> layer2Ports;
+
+    //layer 3
     private int[] ipAddr = new int[4];
     private int[] defaultGateWay = new int[4];
+
 
     public String mac() {return macAddr;}
     public int[] ip() {return ipAddr;}
@@ -25,10 +30,7 @@ public abstract class Device {
         //The packet thats in a frame is sent to the switch (network IP) 
         //TODO implement and figure out how this  is going to work
     }
-    public static void recievePacket()
-    {
-        //TODO implement and figure out how this  is going to work
-    }
+    public abstract void recieveFrame(Frame frame);
     //do we need this? or just a dhcp discover call?
     public void setIP(int[] ip)
     {

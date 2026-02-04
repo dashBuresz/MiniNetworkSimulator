@@ -8,4 +8,8 @@ public class Router extends Device{
     //assigns unique local IP addresses
     //TODO implement DHCP
     private ArrayList<Device> connections;
+    public void recieveFrame(Frame frame)
+    {
+        
+    }
 }

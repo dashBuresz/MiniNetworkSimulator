@@ -11,38 +11,37 @@ public class Switch extends Device{
     //the intended device recieves the packet, 
     //responds and the switch learns and stores the new MAC address and port in the table. 
 
-    private Packet packet;  //for now a switch can only handle a single packet at a time
-    private ArrayList<Integer> ports;
-    private HashMap<MAC, Integer> table;
-    private HashMap<Integer, Device> connections;
+    //private Frame frame;  //for now a switch can only handle a single frame at a time
+    private ArrayList<Layer2Port> ports;
+    private HashMap<Layer2Port, String> macAddrTable;
+    //private HashMap<Integer, Device> connections;
 
-    public Switch(int portnumber)
+    public Switch(int numberOfPorts)
     {
-        for (int i = 1; i < portnumber + 1; i++) ports.add(i);
+        for (int i = 1; i < numberOfPorts + 1; i++) 
+        {
+            ports.add(new Layer2Port(i, null));
+        }
     }
 
     public void addConnection(Device device) 
     {
         //we look through the ports, if a port is not associated with a device, we can assign it to the new device. 
-        for (Integer p : ports)
+        for (Layer2Port p : ports)
         {
-            if (!connections.containsKey(p))
-            {
-                connections.put(p, device);
-                return;
-            }
+            if (macAddrTable.putIfAbsent(p, device.mac()) != null) return;
         }
-        //System.err.println("No ports available! ");
     }
-    public void removeConnection(int port) {connections.remove(port);}
+    public void removeConnection(int portnumber) {macAddrTable.remove(portnumber);}
 
 
-    public static void recievePacket()
+    public void recieveFrame(Frame frame)
     {
-
+        
     }
-    public static void forwardPacket()
+    public void forwardFrame(Frame frame, Device device)
     {
-
+        //in the future we can extend this 
+        device.recieveFrame(frame);
     }
 }
