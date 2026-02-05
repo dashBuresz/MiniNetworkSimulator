@@ -1,6 +1,7 @@
 package model.layer3;
 
 import model.Data;
+import model.Protocol;
 
 public class Packet {
 
@@ -19,6 +20,7 @@ public class Packet {
      */
     private int[] sourceIP;
     private int[] destinationIP;
+    private Protocol protocol;
     private Data data; 
     
 
