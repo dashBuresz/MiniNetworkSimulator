@@ -20,7 +20,7 @@ public class Packet {
      */
     private int[] sourceIP;
     private int[] destinationIP;
-    private Protocol protocol;
+    private Protocol protocol; //the ip header has a field dedicated to mark the protocol traveling above it in the transport layer. 
     private Data data; 
     
 
