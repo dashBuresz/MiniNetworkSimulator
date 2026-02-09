@@ -1,6 +1,7 @@
 package model.layer2;
 
 import java.util.ArrayDeque;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -14,6 +15,8 @@ public class Switch extends Device{
     //the intended device recieves the packet, 
     //responds and the switch learns and stores the new MAC address and port in the table. 
 
+    private ArrayList<Layer2Port> layer2Ports;
+    public ArrayList<Layer2Port> layer2Ports(){return layer2Ports;}
     private HashMap<Layer2Port, String> macAddrTable;
     private ArrayDeque<Frame> frames;
 
@@ -41,7 +44,7 @@ public class Switch extends Device{
     {
         //we get the frame, we have to peek inside to see what we should do 
         frames.add(frame);
-        macAddrTable.put(port, frame.sourceMAC());
+        macAddrTable.putIfAbsent(port, frame.sourceMAC()); //putifabsent also gives functionality for testing
     }
     public void handleFrames()
     {

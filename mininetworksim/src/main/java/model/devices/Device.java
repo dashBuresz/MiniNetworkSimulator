@@ -1,7 +1,5 @@
 package model.devices;
 
-import java.util.ArrayList;
-
 import model.layer2.Frame;
 import model.layer2.Layer2Port;
 import model.layer2.MAC;
@@ -9,10 +7,9 @@ import model.layer3.Packet;
 
 public abstract class Device {
     //Network Interface layer 2
-    private String macAddr;
-    private ArrayList<Layer2Port> layer2Ports;
+    final private String macAddr;
     //layer 2 getter setter
-    public ArrayList<Layer2Port> layer2Ports(){return layer2Ports;}
+    
 
     //layer 3
     private int[] ipAddr = new int[4];

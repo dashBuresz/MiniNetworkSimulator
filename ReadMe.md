@@ -47,19 +47,22 @@ As if now the basic structure and background logic of the project is in question
     - What way should it be implemented
 - Packages
     - decided to use a Protocol class that each protocol inherits, this way we can store all active protocols in a package or exchange in a Protocol header. 
-### Where are we at?
-> [!NOTE]
-> Currently ongoing work is on the DHCPServer, DHCP, Device, Package classes 
 - DHCPServer
     - Implementing a way where we store offered and assigned IP addersses by the devices MAC - HashMap?
-- DHCP
-    - Implementation of the DHCP messages
+### Where are we at?
+> [!NOTE]
+> Currently ongoing work is on the Router, Device, Packet classes 
+- **Router**
+    - Currently implementing the basic router framework, the initialization of a router and then ofc 
+        - [ ] decapsualtion 
+        - [ ] encapsulation 
+        - [ ] routing, routing tables
+        - [ ] time ticking with packet and frame processing
 - Device
-    - Addition of all necessary functionality, implementation of the sendPacket and recievePacket methods
-- Package
+    - Refactoring
+- Packet
     - Implementing the universal protocol header vision. 
-        - Should it be an ArrayList of all active protocols
-        - Or should it be that so each protocol has a reference to a protocol that can or could be layered into it? 
+        - decided to go with the ip stack approach where the ip header contains marking for the transport layer protocol traveling above it. 
 ### Resources
 - [Video explaining a simple network and packets](https://youtu.be/aFR1kKKJoic?si=QgujDzxMpA8USnmE)
 - [Video explaining the same thing a little better](https://youtu.be/zhlMLRNY5-4?si=qoNrfjNCqNaoU4eM)
