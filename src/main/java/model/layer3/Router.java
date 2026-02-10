@@ -63,6 +63,8 @@ public class Router extends Device{
     //the router has a separate MAC and IP for each of it's network interfaces, one layer2Port/interface
     //private HashMap<Layer2Port, String> interfaces;
 
+    public ArrayList<Layer2RouterInterface> interfaces(){return interfaces;}
+
     private Router(){}
     
     public Router createRouter(int numberOfInterfaces)
@@ -70,7 +72,7 @@ public class Router extends Device{
         Router router = new Router();
         for (int i = 0; i < numberOfInterfaces; i++)
         {
-            interfaces.add(new Layer2RouterInterface());
+            router.interfaces().add(new Layer2RouterInterface());
         }
         return router;
     }
@@ -78,6 +80,7 @@ public class Router extends Device{
     public void recieveFrame(Frame frame, Layer2Port port)  //this port here can be the interface port it came in on
     {
         recievedFrames.add(frame);
+        
     }
     private void handleFrames()
     {
