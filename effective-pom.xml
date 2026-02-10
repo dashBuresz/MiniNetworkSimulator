@@ -41,7 +41,7 @@
     </pluginRepository>
   </pluginRepositories>
   <build>
-    <sourceDirectory>e:\Programming\Projects\MiniNetworkSim\src\</sourceDirectory>
+    <sourceDirectory>e:\Programming\Projects\MiniNetworkSim\src\main\java</sourceDirectory>
     <scriptSourceDirectory>e:\Programming\Projects\MiniNetworkSim\src\main\scripts</scriptSourceDirectory>
     <testSourceDirectory>e:\Programming\Projects\MiniNetworkSim\src\test\java</testSourceDirectory>
     <outputDirectory>e:\Programming\Projects\MiniNetworkSim\target\classes</outputDirectory>

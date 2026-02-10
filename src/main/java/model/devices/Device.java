@@ -34,6 +34,11 @@ public abstract class Device {
         //The packet thats in a frame is sent to the switch (network IP) 
         //TODO implement and figure out how this  is going to work
     }
+    /**
+     * This method models a device recieving a frame
+     * @param frame the incoming frame
+     * @param port the layer2 port the frame comes in on. 
+     */
     public abstract void recieveFrame(Frame frame, Layer2Port port);
     //do we need this? or just a dhcp discover call?
     public void setIP(int[] ip)

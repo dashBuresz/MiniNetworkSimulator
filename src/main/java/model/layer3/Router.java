@@ -6,7 +6,6 @@ import java.util.ArrayList;
 import model.devices.Device;
 import model.layer2.Frame;
 import model.layer2.Layer2Port;
-import model.layer2.MAC;
 
 public class Router extends Device{
     //reads destination IP, looks up the best path --> routing table
@@ -44,26 +43,33 @@ public class Router extends Device{
     - Metric: indicator for the desirability of a route lower = better
     */
     
-    private ArrayDeque<Packet> packages;
+    private ArrayDeque<Packet> packets;
 
     //layer2 
-    public class Layer2RouterInterface {
-        final String macAddr;
-        int[] ipAddr;
-        Layer2Port port;
-        public Layer2RouterInterface()
+    public class RouterInterface extends Device{
+        //basicly the interface acts as a separate device that is closely tied with the core router. 
+        //The interfaces maintain a reference to their own routers and the routers maintain a reference to their interfaces
+        Layer2Port port;    // might be unneeded
+        Router owner;
+        public RouterInterface(Router router)
         {
-            macAddr = MAC.generateMACAddress();
+            port = new Layer2Port(1, this);
+            owner = router;
+        }
+
+        @Override
+        public void recieveFrame(Frame frame, Layer2Port port) {
+            owner.recieveFrame(frame, this.port);
         }
     }
-    private ArrayList<Layer2RouterInterface> interfaces;
+    private ArrayList<RouterInterface> interfaces;
     private ArrayDeque<Frame> recievedFrames;
     private ArrayDeque<Frame> assembledFrames;
 
     //the router has a separate MAC and IP for each of it's network interfaces, one layer2Port/interface
     //private HashMap<Layer2Port, String> interfaces;
 
-    public ArrayList<Layer2RouterInterface> interfaces(){return interfaces;}
+    public ArrayList<RouterInterface> interfaces(){return interfaces;}
 
     private Router(){}
     
@@ -72,15 +78,15 @@ public class Router extends Device{
         Router router = new Router();
         for (int i = 0; i < numberOfInterfaces; i++)
         {
-            router.interfaces().add(new Layer2RouterInterface());
+            router.interfaces().add(new RouterInterface(this));
         }
         return router;
     }
 
     public void recieveFrame(Frame frame, Layer2Port port)  //this port here can be the interface port it came in on
     {
+        //we add the incoming frame to the frames being handled by the router
         recievedFrames.add(frame);
-        
     }
     private void handleFrames()
     {
@@ -88,5 +94,13 @@ public class Router extends Device{
         //for now one frame at a time (per call to this method)
         Frame frame = recievedFrames.pop();
         //if destination mac matches the interface it came in on we decapsulate
+        //FUCK IT we dont care about destination mac we decapsulate either way
+        Packet packet = frame.packet();
+
+        //look for the longest subnet match between interfaces ip and the destination ip
+        //find the mac of the destination device or next hop
+        //assemble the new frame and forward it through the appropriate interface
+        
+        packets.add(frame.packet());
     }
 }

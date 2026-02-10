@@ -24,7 +24,7 @@ public class Switch extends Device{
     {
         for (int i = 1; i < numberOfPorts + 1; i++) 
         {
-            this.layer2Ports().add(new Layer2Port(i, null));
+            layer2Ports.add(new Layer2Port(i, null));
         }
         frames = new ArrayDeque<>();
     }
@@ -37,7 +37,6 @@ public class Switch extends Device{
             if (macAddrTable.putIfAbsent(p, deviceMACAddr) != null) return;
         }
     }
-
 
     @Override
     public void recieveFrame(Frame frame, Layer2Port port)
