@@ -12,19 +12,16 @@ public abstract class Device {
     
 
     //layer 3
-    private int[] ipAddr = new int[4];
-    private int[] defaultGateWay = new int[4];
+    private int ipAddr;
+    private int defaultGateWay;
 
 
     public String mac() {return macAddr;}
-    public int[] ip() {return ipAddr;}
+    public int ip() {return ipAddr;}
 
     public Device() 
     {
-        ipAddr[0] = 0b00000000;
-        ipAddr[1] = 0b00000000;
-        ipAddr[2] = 0b00000000;
-        ipAddr[3] = 0b00000000;
+        ipAddr = 0;
         macAddr = MAC.generateMACAddress();
         //initially all devices get a local IP address
     }
@@ -41,7 +38,7 @@ public abstract class Device {
      */
     public abstract void recieveFrame(Frame frame, Layer2Port port);
     //do we need this? or just a dhcp discover call?
-    public void setIP(int[] ip)
+    public void setIP(int ip)
     {
         ipAddr = ip;
     }

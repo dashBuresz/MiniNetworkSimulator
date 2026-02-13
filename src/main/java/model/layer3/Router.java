@@ -86,6 +86,8 @@ public class Router extends Device{
     public void recieveFrame(Frame frame, Layer2Port port)  //this port here can be the interface port it came in on
     {
         //we add the incoming frame to the frames being handled by the router
+        //if destination mac matches the interface it came in on can handle the frame otherwise we'll just drop it
+        //for now we dont care about destination mac we decapsulate either way
         recievedFrames.add(frame);
     }
     private void handleFrames()
@@ -93,14 +95,47 @@ public class Router extends Device{
         //Time ticking eventually?
         //for now one frame at a time (per call to this method)
         Frame frame = recievedFrames.pop();
-        //if destination mac matches the interface it came in on we decapsulate
-        //FUCK IT we dont care about destination mac we decapsulate either way
         Packet packet = frame.packet();
-
         //look for the longest subnet match between interfaces ip and the destination ip
         //find the mac of the destination device or next hop
         //assemble the new frame and forward it through the appropriate interface
-        
+        for (RouterInterface routerInterface : interfaces)
+        {
+
+        }
+
+
         packets.add(frame.packet());
+    }
+    private RouterInterface findLongestSubnetMatch(int[] ip)
+    {
+        ArrayList<Integer> subnetMatchLengths = new ArrayList();
+        for (RouterInterface routerInterface : interfaces)
+        {
+            //TODO implement this
+        }
+        return null;
+    }
+    private int findMatchLength(int ip1, int ip2)
+    {
+        //TODO implement this
+        //bitshifting time or no?
+        //iterate through both ips at once and check them against each other bit by bit, 
+        //build a inverse 32 bit distance vector, where both ips matched the bit is 1 and if there is no match it should be 0, 
+        // after the first discreptancy all oother bits will be 0
+        //calculate and return the weight of said inverse distance vector
+        int distanceVector = 0;
+        distanceVector = ip1^ip2;   // match = 0, different = 1
+        //for readability's sake
+        int inverseDistanceVector = ~distanceVector;    //all matches = 1, different = 0
+        //moving mask from msb, we calculate the weight until we find the first 0
+        int weight = 0;
+        for (int i = 0; i < Integer.SIZE; i++)
+        {
+            if (((inverseDistanceVector >> i) & 1 )== 1) weight++;
+            else return weight;
+        }
+        //return the weight
+        return weight;
     }
 }
