@@ -44,7 +44,7 @@ As if now the basic structure and background logic of the project is in question
 > Currently ongoing work
 - **Router**
     - Currently implementing the basic router framework, the initialization of a router and then ofc 
-        - [ ] decapsualtion 
+        - [X] decapsualtion 
         - [ ] encapsulation 
         - [ ] routing, routing tables
         - [ ] time ticking with packet and frame processing
@@ -53,6 +53,10 @@ As if now the basic structure and background logic of the project is in question
 - Packet
     - Implementing the universal protocol header vision. 
         - decided to go with the ip stack approach where the ip header contains marking for the transport layer protocol traveling above it. 
+### Finished
+- Frame class finished
+- Layer2Link class finished
+- Layer2Port class finished
 ### Resources
 - [Video explaining a simple network and packets](https://youtu.be/aFR1kKKJoic?si=QgujDzxMpA8USnmE)
 - [Video explaining the same thing a little better](https://youtu.be/zhlMLRNY5-4?si=qoNrfjNCqNaoU4eM)

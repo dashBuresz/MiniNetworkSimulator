@@ -13,7 +13,6 @@ public class Router extends Device{
     //assigns unique local IP addresses (no thats the DHCP server responsibility)
 
 
-    //TODO implement DHCP
     //TODO router responsibilities
     /*
     routing table
@@ -23,8 +22,6 @@ public class Router extends Device{
     NAT
     Firewall/Filtering
 
-    */
-    /*
     the router is a layer 3 device
     router gets a frame
     examines destination mac 
@@ -32,11 +29,8 @@ public class Router extends Device{
     routes based on ip
     once route is defined a new frame is assembled
     new frames destination mac now matches the host destination mac
-
     
-    need a routing table implementation
-    
-    a routing table has
+    need a routing table implementation, a routing table has
     - Destination network: target ip address or subnet
     - Next Hop: ip address of the next router on the path
     - Interface: physical port to use for forwarding 
@@ -99,28 +93,37 @@ public class Router extends Device{
         //look for the longest subnet match between interfaces ip and the destination ip
         //find the mac of the destination device or next hop
         //assemble the new frame and forward it through the appropriate interface
-        for (RouterInterface routerInterface : interfaces)
-        {
-
-        }
-
+        RouterInterface routerInterface = findLongestSubnetMatch(packet.getDestIP());
+        //we will forward through this
+        //TODO implement a way to resolve the new MAC --> run ARP
+        String resolvedMAC = new String();
+        Frame assembledFrame = Frame.assembleFrame(packet, frame.sourceMAC(), resolvedMAC);
+        routerInterface.port.send(assembledFrame);
 
         packets.add(frame.packet());
     }
-    private RouterInterface findLongestSubnetMatch(int[] ip)
+    private RouterInterface findLongestSubnetMatch(int ip)
     {
         ArrayList<Integer> subnetMatchLengths = new ArrayList();
         for (RouterInterface routerInterface : interfaces)
         {
-            //TODO implement this
+            subnetMatchLengths.add(findMatchLength(ip, routerInterface.ip()));
         }
-        return null;
+        //find the longest match
+        int greatestMatchLength = subnetMatchLengths.get(0);
+        int greatestMatchIdx = -1;
+        for(int i = 0; i < subnetMatchLengths.size(); i++)
+        {
+            if (greatestMatchLength < subnetMatchLengths.get(i)) 
+            {
+                greatestMatchLength = subnetMatchLengths.get(i);
+                greatestMatchIdx = i;
+            }
+        }
+        return interfaces.get(greatestMatchIdx);
     }
-    private int findMatchLength(int ip1, int ip2)
+    private static int findMatchLength(int ip1, int ip2)
     {
-        //TODO implement this
-        //bitshifting time or no?
-        //iterate through both ips at once and check them against each other bit by bit, 
         //build a inverse 32 bit distance vector, where both ips matched the bit is 1 and if there is no match it should be 0, 
         // after the first discreptancy all oother bits will be 0
         //calculate and return the weight of said inverse distance vector

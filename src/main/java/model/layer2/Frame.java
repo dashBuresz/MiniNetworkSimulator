@@ -10,7 +10,7 @@ public class Frame {
     {
 
     }
-    public Frame assembleFrame(Packet packet, String destinationMAC, String sourceMAC)
+    public static Frame assembleFrame(Packet packet, String destinationMAC, String sourceMAC)
     {
         Frame frame = new Frame();
         frame.setPacket(packet);

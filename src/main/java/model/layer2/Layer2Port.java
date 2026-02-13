@@ -4,6 +4,8 @@ import model.devices.Device;
 
 /**
  * This class represents a layer 2 port in a network device, representing the connection points in the data-link and physical layers. 
+ * Use recieveFrame to recieve a frame from an external source
+ * Use send to send a frame through the connected Link
  */
 public class Layer2Port {
     private int id;

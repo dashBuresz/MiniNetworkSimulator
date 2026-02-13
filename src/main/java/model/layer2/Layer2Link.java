@@ -15,6 +15,7 @@ public class Layer2Link {
             if (!port.equals(source))
             {
                 port.recieve(frame);
+                break;
             }
         }
     }

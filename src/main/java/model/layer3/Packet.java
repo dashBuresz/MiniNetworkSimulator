@@ -18,8 +18,8 @@ public class Packet {
     source ip
     destination ip
      */
-    private int[] sourceIP;
-    private int[] destinationIP;
+    private int sourceIP;
+    private int destinationIP;
     private Protocol protocol; //the ip header has a field dedicated to mark the protocol traveling above it in the transport layer. 
     private Data data; 
     
@@ -31,12 +31,12 @@ public class Packet {
 
     //private Packet(){}
 
-    public Packet(int[] sourceIP)
+    public Packet(int sourceIP)
     {
         this.sourceIP = sourceIP;
     }
-    public void setDestIP (int[] destination) {destinationIP = destination;}
+    public void setDestIP (int destination) {destinationIP = destination;}
     
-    public int[]  getSourceIP() {return sourceIP;}
-    public int[] getDestIP() {return destinationIP;}
+    public int  getSourceIP() {return sourceIP;}
+    public int getDestIP() {return destinationIP;}
 }
