@@ -41,7 +41,7 @@ As if now the basic structure and background logic of the project is in question
     - Implementing a way where we store offered and assigned IP addersses by the devices MAC - HashMap?
 ### Where are we at?
 > [!NOTE]
-> Currently ongoing work
+> Currently ongoing work considerations
 - **Router**
     - Currently implementing the basic router framework, the initialization of a router and then ofc 
         - [X] decapsualtion 
@@ -53,10 +53,20 @@ As if now the basic structure and background logic of the project is in question
 - Packet
     - Implementing the universal protocol header vision. 
         - decided to go with the ip stack approach where the ip header contains marking for the transport layer protocol traveling above it. 
-### Finished
+### Status of relevant classes to ongoing implementation
+- MAC class finished
 - Frame class finished
 - Layer2Link class finished
 - Layer2Port class finished
+- Switch class finished
+- Device class WIP
+- Router class WIP
+    - To Implement 
+        - ARP
+        - Routing tables
+- Data class not implemented
+- Protocol class not implemented
+- UDPDatagram class WIP
 ### Resources
 - [Video explaining a simple network and packets](https://youtu.be/aFR1kKKJoic?si=QgujDzxMpA8USnmE)
 - [Video explaining the same thing a little better](https://youtu.be/zhlMLRNY5-4?si=qoNrfjNCqNaoU4eM)

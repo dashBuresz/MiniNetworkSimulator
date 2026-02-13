@@ -12,11 +12,7 @@ public class DHCP extends Protocol{
         /*
         From 0.0.0.0 to 255.255.255.255
          */
-        int[] destination = new int[4];
-        destination[0] = 0b11111111;
-        destination[1] = 0b11111111;
-        destination[2] = 0b11111111;
-        destination[3] = 0b11111111;
+        int destination = ~0;
         //Packet message = new Packet(device.ip(), device.mac());
         //TODO what should be the message sent?
         
