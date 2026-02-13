@@ -3,10 +3,20 @@ package model.devices;
 import model.layer2.Frame;
 import model.layer2.Layer2Port;
 import model.layer2.MAC;
-
+/**
+ * This class represents a common parent class for all devices in the simulator. 
+ * 
+ * Layer2: 
+ * - Each device has it's own unique MAC
+ * - Each device must have it's own layer2 implementation, since that can differ from device to device.
+ * - Each device must implement the recieveFrame(Frame, Layer2Port) methdd to have a unified way of recieving frames through the network. 
+ * 
+ * Layer3: 
+ * - Each device has it's own ip address
+ */
 public abstract class Device {
     //Network Interface layer 2
-    final private String macAddr;
+    private final String macAddr;
     //layer 2 getter setter
     
 

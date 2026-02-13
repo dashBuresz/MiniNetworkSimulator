@@ -43,7 +43,7 @@ public class Router extends Device{
     public class RouterInterface extends Device{
         //basicly the interface acts as a separate device that is closely tied with the core router. 
         //The interfaces maintain a reference to their own routers and the routers maintain a reference to their interfaces
-        Layer2Port port;    // might be unneeded
+        Layer2Port port;
         Router owner;
         public RouterInterface(Router router)
         {
@@ -61,7 +61,6 @@ public class Router extends Device{
     private ArrayDeque<Frame> assembledFrames;
 
     //the router has a separate MAC and IP for each of it's network interfaces, one layer2Port/interface
-    //private HashMap<Layer2Port, String> interfaces;
 
     public ArrayList<RouterInterface> interfaces(){return interfaces;}
 
