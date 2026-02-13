@@ -4,7 +4,7 @@ This Project aims to model a simple network with a graphical user interface, in 
 Currently the projects background logic is under implementation, with the GUI implementation halted until this initial phase is done. 
 As if now the basic structure and background logic of the project is in question concerning its current state. A complete overhaul might be needed to avoid future headaches.  
 ## Roadmap
-1. Architectural planning and basic logic implementation
+1. [!CURRENT] Architectural planning and basic logic implementation
     - create a skeleton of the project with some basic working classes to demonstrate how everything should work in a nutshell. 
 2. Bare Bones GUI implementation
     - implement a basic GUI to represent the network visually. 
@@ -29,10 +29,6 @@ As if now the basic structure and background logic of the project is in question
 ## IP stack considerations
 - IP Header
     - Do I need an IP header class that contains all necessary information when sending a packet?
-- UDP
-    - should I also create a separate class for this?
-    - UDP needs ports, this means ports on all devices should be implemented
-        - separate PORT class to handle port related operations or can the device class itself handle that?
 - ICMP
     - What way should it be implemented
 - Packages
