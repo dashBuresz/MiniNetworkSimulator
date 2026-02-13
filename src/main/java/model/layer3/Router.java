@@ -66,7 +66,11 @@ public class Router extends Device{
     public ArrayList<RouterInterface> interfaces(){return interfaces;}
 
     private Router(){}
-    
+    /**
+     * Factory Method for the Router class
+     * @param numberOfInterfaces the amount of interfaces our router will have
+     * @return the created Router object
+     */
     public Router createRouter(int numberOfInterfaces)
     {
         Router router = new Router();
@@ -102,6 +106,11 @@ public class Router extends Device{
 
         packets.add(frame.packet());
     }
+    /**
+     * Finds the RouterInterface associated with the longest subnet match
+     * @param ip the 32 bit ip address we search the longest match to from the msb
+     * @return the RouterInterface with the longest matching ip from the msb
+     */
     private RouterInterface findLongestSubnetMatch(int ip)
     {
         ArrayList<Integer> subnetMatchLengths = new ArrayList();
@@ -122,13 +131,18 @@ public class Router extends Device{
         }
         return interfaces.get(greatestMatchIdx);
     }
+    /**
+     * This method uses bitshifting to check the length of match between too integers or in this case 32 bit ip addresses, from the msb
+     * @param ip1 first 32 bit integer to compare
+     * @param ip2 second 32 bit integer to compare
+     * @return the length of match from the msb
+     */
     private static int findMatchLength(int ip1, int ip2)
     {
         //build a inverse 32 bit distance vector, where both ips matched the bit is 1 and if there is no match it should be 0, 
         // after the first discreptancy all oother bits will be 0
         //calculate and return the weight of said inverse distance vector
-        int distanceVector = 0;
-        distanceVector = ip1^ip2;   // match = 0, different = 1
+        int distanceVector = ip1^ip2;   // match = 0, different = 1
         //for readability's sake
         int inverseDistanceVector = ~distanceVector;    //all matches = 1, different = 0
         //moving mask from msb, we calculate the weight until we find the first 0
