@@ -1,42 +1,17 @@
 package model.layer3;
 
-import model.Data;
-import model.Protocol;
-
 public class Packet {
-
-    /*
-    for the header we would have
-    version
-    IHL
-    ToS
-    Total length
-    Ident, flags, fragment offset
-    TTL
-    Protocol
-    Header checksum
-    source ip
-    destination ip
-     */
     private int sourceIP;
     private int destinationIP;
-    private Protocol protocol; //the ip header has a field dedicated to mark the protocol traveling above it in the transport layer. 
-    private Data data; 
-    
-
-    //TODO implement a way to send universal packets, with universal payloads, meaning the format of a payload might change from packet to packet
-    
-    //TODO ICMP needs to be implemented
-    
-
-    //private Packet(){}
-
-    public Packet(int sourceIP)
-    {
-        this.sourceIP = sourceIP;
+    private Packet(){}
+    protected Packet(int src){sourceIP = src;}
+    public static Packet createPacket(int src){
+        Packet packet = new Packet();
+        packet.setSourceIP(src);
+        return packet;
     }
     public void setDestIP (int destination) {destinationIP = destination;}
-    
+    public void setSourceIP(int source) {sourceIP = source;}
     public int  getSourceIP() {return sourceIP;}
     public int getDestIP() {return destinationIP;}
 }

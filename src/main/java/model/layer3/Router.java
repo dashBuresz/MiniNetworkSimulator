@@ -27,6 +27,8 @@ public class Router extends Device{
     examines destination mac 
     if it matches extracts packet from frame
     routes based on ip
+    - if the destination is found in the routing table the packet will be forwarded on the appropriate interface
+    - if there is no match, then ICMP message to the sender, and the router drops the packet
     once route is defined a new frame is assembled
     new frames destination mac now matches the host destination mac
     

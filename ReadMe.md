@@ -47,6 +47,10 @@ As if now the basic structure and background logic of the project is in question
 - Device
     - Refactoring
 - Packet
+    - universal packet parent class for different types of packets over layer2 ethernet
+- ARPPacket
+    - A packet frame structure for ARP messages over layer2 ethernet. 
+- IPPacket
     - Implementing the universal protocol header vision. 
         - decided to go with the ip stack approach where the ip header contains marking for the transport layer protocol traveling above it. 
 ### Status of relevant classes to ongoing implementation
