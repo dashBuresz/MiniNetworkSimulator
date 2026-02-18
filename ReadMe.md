@@ -45,6 +45,7 @@ As if now the basic structure and background logic of the project is in question
     - the mac address of the next hop router interface in its destination mac field
     - the mac address of the interface it forwarded out on as the source mac address
 - the assembled frame is forwarded on the appropriate interface
+
 **Router flow to directly connected networks**
 - recieves frame 
 - checks destination mac and finds that it matches one of its interfaces mac addresses
