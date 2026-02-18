@@ -58,15 +58,44 @@ public class Router extends Device{
             owner.recieveFrame(frame, this.port);
         }
     }
+    public class Route {
+        private int networkAddr, subnetMask, nextHop;
+        private RouterInterface routerInterface;
+        private boolean directConnection;
+        public Route(int netAddr, int mask, RouterInterface routerInterface, boolean isDirect, int hop)
+        {
+            networkAddr = netAddr;
+            subnetMask = mask;
+            this.routerInterface = routerInterface;
+            directConnection = isDirect;
+            nextHop = hop;
+        }
+        //getters
+        public int getNetworkAddr(){return networkAddr;}
+        public int getSubnetMaskBinarized(){return subnetMask;}
+        public int getNextHop() {return nextHop;}
+        public RouterInterface getInterface(){return routerInterface;}
+        public boolean isDirectConntection() {return directConnection;}
+        //setters
+        public void setNetworkAddr(int addr) {networkAddr = addr;}
+        public void setSubnetMaskBinary(int mask) {subnetMask = mask;}
+        public void setNextHop(int hop) {nextHop = hop;}
+        public void setInterface(RouterInterface rInterface){routerInterface = rInterface;}
+        public void setDirectConnection(boolean isDirect) {directConnection = isDirect;}
+    }
     private ArrayList<RouterInterface> interfaces;
     private ArrayDeque<Frame> recievedFrames;
+    private ArrayList<Route> routingTable;
     private ArrayDeque<Frame> assembledFrames;
 
     //the router has a separate MAC and IP for each of it's network interfaces, one layer2Port/interface
 
     public ArrayList<RouterInterface> interfaces(){return interfaces;}
 
-    private Router(){}
+    private Router()
+    {
+        routingTable = new ArrayList<>();
+    }
     /**
      * Factory Method for the Router class
      * @param numberOfInterfaces the amount of interfaces our router will have
