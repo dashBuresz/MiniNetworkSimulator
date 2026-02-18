@@ -95,5 +95,9 @@ Remote networks
 - Protocol class not implemented
 - UDPDatagram class WIP
 ### Resources
+General network function
 - [Video explaining a simple network and packets](https://youtu.be/aFR1kKKJoic?si=QgujDzxMpA8USnmE)
 - [Video explaining the same thing a little better](https://youtu.be/zhlMLRNY5-4?si=qoNrfjNCqNaoU4eM)
+Routing
+- [Video explaining routing, and network interactions](https://youtu.be/GnFJiefznlM?si=XQ9jfs3KrPodtcR-)
+- [Video explaining the routing table with examples](https://youtu.be/uKiM9-tGuc4?si=6B70FcgCH1FiKQQi)
