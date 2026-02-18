@@ -37,6 +37,24 @@ public class Router extends Device{
     - Next Hop: ip address of the next router on the path
     - Interface: physical port to use for forwarding 
     - Metric: indicator for the desirability of a route lower = better
+
+    Router flow to outer networks
+    - recieves frame
+    - checks destination mac and finds that it matches one of its interfaces mac addresses
+    - strips off the frame header and analyzes the packets destination ip address
+    - sees that the destination ip is on a different network so it looks up that network in the routing table and identifies the interface
+    - the router assembles a new frame, that has 
+        - the mac address of the next hop router interface in its destination mac field
+        - the mac address of the interface it forwarded out on as the source mac address
+    - the assembled frame is forwarded on the appropriate interface
+    Router flow to directly connected networks
+    - recieves frame 
+    - checks destination mac and finds that it matches one of its interfaces mac addresses
+    - strips off the frame header and analyzes the packets destination ip address
+    - sees that the destination ip is on a different network so it looks up that network in the routing table and identifies the interface
+    - the router assembles a new frame, that has
+        - the mac address of the destination endpoint as the destination mac
+        - the mac address of the interface it forwarded out on as the source mac address
     */
     
     private ArrayDeque<Packet> packets;
@@ -58,6 +76,10 @@ public class Router extends Device{
             owner.recieveFrame(frame, this.port);
         }
     }
+    /**
+     * This Class represents an entry within the routing table of a router. 
+     * The most important fields are the network address, the interface to reach that address and the next hop. 
+     */
     public class Route {
         private int networkAddr, subnetMask, nextHop;
         private RouterInterface routerInterface;
@@ -116,13 +138,14 @@ public class Router extends Device{
         //we add the incoming frame to the frames being handled by the router
         //if destination mac matches the interface it came in on can handle the frame otherwise we'll just drop it
         //for now we dont care about destination mac we decapsulate either way
-        recievedFrames.add(frame);
+        if (frame.destinationMAC().equals(port.owner().mac())) recievedFrames.add(frame);
     }
     private void handleFrames()
     {
         //Time ticking eventually?
         //for now one frame at a time (per call to this method)
         Frame frame = recievedFrames.pop();
+
         Packet packet = frame.packet();
         //look for the longest subnet match between interfaces ip and the destination ip
         //find the mac of the destination device or next hop
@@ -131,6 +154,7 @@ public class Router extends Device{
         //we will forward through this
         //TODO implement a way to resolve the new MAC --> run ARP
         String resolvedMAC = new String();
+        //TODO resolve the MAC
         Frame assembledFrame = Frame.assembleFrame(packet, frame.sourceMAC(), resolvedMAC);
         routerInterface.port.send(assembledFrame);
 

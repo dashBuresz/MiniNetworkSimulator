@@ -35,6 +35,33 @@ As if now the basic structure and background logic of the project is in question
     - decided to use a Protocol class that each protocol inherits, this way we can store all active protocols in a package or exchange in a Protocol header. 
 - DHCPServer
     - Implementing a way where we store offered and assigned IP addersses by the devices MAC - HashMap?
+## Router flow 
+**Router flow to remote networks**
+- recieves frame
+- checks destination mac and finds that it matches one of its interfaces mac addresses
+- strips off the frame header and analyzes the packets destination ip address
+- sees that the destination ip is on a different network so it looks up that network in the routing table and identifies the interface
+- the router assembles a new frame, that has 
+    - the mac address of the next hop router interface in its destination mac field
+    - the mac address of the interface it forwarded out on as the source mac address
+- the assembled frame is forwarded on the appropriate interface
+**Router flow to directly connected networks**
+- recieves frame 
+- checks destination mac and finds that it matches one of its interfaces mac addresses
+- strips off the frame header and analyzes the packets destination ip address
+- sees that the destination ip is on a different network so it looks up that network in the routing table and identifies the interface
+- the router assembles a new frame, that has
+    - the mac address of the destination endpoint as the destination mac
+    - the mac address of the interface it forwarded out on as the source mac address
+## Routing Table flow
+**Addition of entries**
+Directly connected networks are added automatically. 
+Remote networks
+- Static
+    - manually by admin. 
+- Dynamic
+    - routing protocols
+- Default route with 0.0.0.0 ip and 0.0.0.0 mask?
 ### Where are we at?
 > [!NOTE]
 > Currently ongoing work considerations
