@@ -79,6 +79,11 @@ public class Router extends Device{
     /**
      * This Class represents an entry within the routing table of a router. 
      * The most important fields are the network address, the interface to reach that address and the next hop. 
+     * - networkAddr: destination network
+     * - subnetMask: subnet mask of the destination network
+     * - routerInterface: the interface to be used to get to the destination network/next hop on the route
+     * - directConnection: is the destination network directly connected?
+     * - nextHop: ip address of the next hop on the route. 
      */
     public class Route {
         private int networkAddr, subnetMask, nextHop;
@@ -154,6 +159,8 @@ public class Router extends Device{
         //we will forward through this
         //TODO implement a way to resolve the new MAC --> run ARP
         String resolvedMAC = new String();
+        //1. find longest subnet match
+        //forward on that interface
         //TODO resolve the MAC
         Frame assembledFrame = Frame.assembleFrame(packet, frame.sourceMAC(), resolvedMAC);
         routerInterface.port.send(assembledFrame);
@@ -163,7 +170,7 @@ public class Router extends Device{
     /**
      * Finds the RouterInterface associated with the longest subnet match
      * @param ip the 32 bit ip address we search the longest match to from the msb
-     * @return the RouterInterface with the longest matching ip from the msb
+     * @return the RouterInterface with the longest subnet match. 
      */
     private RouterInterface findLongestSubnetMatch(int ip)
     {
