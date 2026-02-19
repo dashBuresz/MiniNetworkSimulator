@@ -56,6 +56,7 @@ As if now the basic structure and background logic of the project is in question
     - the mac address of the interface it forwarded out on as the source mac address
 ## Routing Table flow
 **Addition of entries**
+
 Directly connected networks are added automatically. 
 Remote networks
 - Static
