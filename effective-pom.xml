@@ -8,13 +8,13 @@
 <!-- ====================================================================== -->
 <!--                                                                        -->
 <!-- Effective POM for project                                              -->
-<!-- 'mininetworksim:mininetworksim:jar:1.0-SNAPSHOT'                       -->
+<!-- 'mininetworksimulator:mininetworksimulator:jar:1.0-SNAPSHOT'           -->
 <!--                                                                        -->
 <!-- ====================================================================== -->
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
-  <groupId>mininetworksim</groupId>
-  <artifactId>mininetworksim</artifactId>
+  <groupId>mininetworksimulator</groupId>
+  <artifactId>mininetworksimulator</artifactId>
   <version>1.0-SNAPSHOT</version>
   <properties>
     <maven.compiler.source>17</maven.compiler.source>
@@ -41,23 +41,23 @@
     </pluginRepository>
   </pluginRepositories>
   <build>
-    <sourceDirectory>e:\Programming\Projects\MiniNetworkSim\src\main\java</sourceDirectory>
-    <scriptSourceDirectory>e:\Programming\Projects\MiniNetworkSim\src\main\scripts</scriptSourceDirectory>
-    <testSourceDirectory>e:\Programming\Projects\MiniNetworkSim\src\test\java</testSourceDirectory>
-    <outputDirectory>e:\Programming\Projects\MiniNetworkSim\target\classes</outputDirectory>
-    <testOutputDirectory>e:\Programming\Projects\MiniNetworkSim\target\test-classes</testOutputDirectory>
+    <sourceDirectory>c:\Programming Projects\mininetworksim\MiniNetworkSimulator\src\main\java</sourceDirectory>
+    <scriptSourceDirectory>c:\Programming Projects\mininetworksim\MiniNetworkSimulator\src\main\scripts</scriptSourceDirectory>
+    <testSourceDirectory>c:\Programming Projects\mininetworksim\MiniNetworkSimulator\src\test\java</testSourceDirectory>
+    <outputDirectory>c:\Programming Projects\mininetworksim\MiniNetworkSimulator\target\classes</outputDirectory>
+    <testOutputDirectory>c:\Programming Projects\mininetworksim\MiniNetworkSimulator\target\test-classes</testOutputDirectory>
     <resources>
       <resource>
-        <directory>e:\Programming\Projects\MiniNetworkSim\src\main\resources</directory>
+        <directory>c:\Programming Projects\mininetworksim\MiniNetworkSimulator\src\main\resources</directory>
       </resource>
     </resources>
     <testResources>
       <testResource>
-        <directory>e:\Programming\Projects\MiniNetworkSim\src\test\resources</directory>
+        <directory>c:\Programming Projects\mininetworksim\MiniNetworkSimulator\src\test\resources</directory>
       </testResource>
     </testResources>
-    <directory>e:\Programming\Projects\MiniNetworkSim\target</directory>
-    <finalName>mininetworksim-1.0-SNAPSHOT</finalName>
+    <directory>c:\Programming Projects\mininetworksim\MiniNetworkSimulator\target</directory>
+    <finalName>mininetworksimulator-1.0-SNAPSHOT</finalName>
     <pluginManagement>
       <plugins>
         <plugin>
@@ -195,7 +195,7 @@
               <goal>site</goal>
             </goals>
             <configuration>
-              <outputDirectory>e:\Programming\Projects\MiniNetworkSim\target\site</outputDirectory>
+              <outputDirectory>c:\Programming Projects\mininetworksim\MiniNetworkSimulator\target\site</outputDirectory>
               <reportPlugins>
                 <reportPlugin>
                   <groupId>org.apache.maven.plugins</groupId>
@@ -211,7 +211,7 @@
               <goal>deploy</goal>
             </goals>
             <configuration>
-              <outputDirectory>e:\Programming\Projects\MiniNetworkSim\target\site</outputDirectory>
+              <outputDirectory>c:\Programming Projects\mininetworksim\MiniNetworkSimulator\target\site</outputDirectory>
               <reportPlugins>
                 <reportPlugin>
                   <groupId>org.apache.maven.plugins</groupId>
@@ -222,7 +222,7 @@
           </execution>
         </executions>
         <configuration>
-          <outputDirectory>e:\Programming\Projects\MiniNetworkSim\target\site</outputDirectory>
+          <outputDirectory>c:\Programming Projects\mininetworksim\MiniNetworkSimulator\target\site</outputDirectory>
           <reportPlugins>
             <reportPlugin>
               <groupId>org.apache.maven.plugins</groupId>
@@ -234,6 +234,6 @@
     </plugins>
   </build>
   <reporting>
-    <outputDirectory>e:\Programming\Projects\MiniNetworkSim\target\site</outputDirectory>
+    <outputDirectory>c:\Programming Projects\mininetworksim\MiniNetworkSimulator\target\site</outputDirectory>
   </reporting>
 </project>
