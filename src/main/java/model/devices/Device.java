@@ -14,15 +14,14 @@ import model.layer2.MAC;
  * Layer3: 
  * - Each device has it's own ip address
  */
+import model.layer3.DeviceInterface;
 public abstract class Device {
     //Network Interface layer 2
     private final String macAddr;
     //layer 2 getter setter
-    
 
     //layer 3
     private int ipAddr;
-    private int defaultGateWay;
 
 
     public String mac() {return macAddr;}
@@ -41,8 +40,5 @@ public abstract class Device {
      */
     public abstract void recieveFrame(Frame frame, Layer2Port port);
     //do we need this? or just a dhcp discover call?
-    public void setIP(int ip)
-    {
-        ipAddr = ip;
-    }
+    public void setIP(int ip){ipAddr = ip;}
 }

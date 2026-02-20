@@ -28,7 +28,7 @@ public class Switch extends Device{
         }
         frames = new ArrayDeque<>();
     }
-
+    public Layer2Port getPort(int portId){return layer2Ports.get(portId);}
     public void addConnection(String deviceMACAddr) 
     {
         //we look through the ports, if a port is not associated with a device, we can assign it to the new device. 

@@ -59,65 +59,48 @@ public class Router extends Device{
     
     private ArrayDeque<Packet> packets;
 
-    //layer2 
-    public class RouterInterface extends Device{
-        //basicly the interface acts as a separate device that is closely tied with the core router. 
-        //The interfaces maintain a reference to their own routers and the routers maintain a reference to their interfaces
-        Layer2Port port;
-        Router owner;
-        public RouterInterface(Router router)
-        {
-            port = new Layer2Port(1, this);
-            owner = router;
-        }
-
-        @Override
-        public void recieveFrame(Frame frame, Layer2Port port) {
-            owner.recieveFrame(frame, this.port);
-        }
-    }
     /**
      * This Class represents an entry within the routing table of a router. 
      * The most important fields are the network address, the interface to reach that address and the next hop. 
      * - networkAddr: destination network
-     * - subnetMask: subnet mask of the destination network
+     * - netMask: subnet mask of the destination network
      * - routerInterface: the interface to be used to get to the destination network/next hop on the route
      * - directConnection: is the destination network directly connected?
      * - nextHop: ip address of the next hop on the route. 
      */
     public class Route {
-        private int networkAddr, subnetMask, nextHop;
-        private RouterInterface routerInterface;
+        private int networkAddr, netMask, nextHop;
+        private DeviceInterface routerInterface;
         private boolean directConnection;
-        public Route(int netAddr, int mask, RouterInterface routerInterface, boolean isDirect, int hop)
+        public Route(int netAddr, int mask, DeviceInterface routerInterface, boolean isDirect, int hop)
         {
             networkAddr = netAddr;
-            subnetMask = mask;
+            netMask = mask;
             this.routerInterface = routerInterface;
             directConnection = isDirect;
             nextHop = hop;
         }
         //getters
         public int getNetworkAddr(){return networkAddr;}
-        public int getSubnetMaskBinarized(){return subnetMask;}
+        public int getSubnetMaskBinarized(){return netMask;}
         public int getNextHop() {return nextHop;}
-        public RouterInterface getInterface(){return routerInterface;}
+        public DeviceInterface getInterface(){return routerInterface;}
         public boolean isDirectConntection() {return directConnection;}
         //setters
         public void setNetworkAddr(int addr) {networkAddr = addr;}
-        public void setSubnetMaskBinary(int mask) {subnetMask = mask;}
+        public void setSubnetMaskBinary(int mask) {netMask = mask;}
         public void setNextHop(int hop) {nextHop = hop;}
-        public void setInterface(RouterInterface rInterface){routerInterface = rInterface;}
+        public void setInterface(DeviceInterface rInterface){routerInterface = rInterface;}
         public void setDirectConnection(boolean isDirect) {directConnection = isDirect;}
     }
-    private ArrayList<RouterInterface> interfaces;
+    private ArrayList<DeviceInterface> interfaces;
     private ArrayDeque<Frame> recievedFrames;
     private ArrayList<Route> routingTable;
     private ArrayDeque<Frame> assembledFrames;
 
     //the router has a separate MAC and IP for each of it's network interfaces, one layer2Port/interface
 
-    public ArrayList<RouterInterface> interfaces(){return interfaces;}
+    public ArrayList<DeviceInterface> interfaces(){return interfaces;}
 
     private Router()
     {
@@ -128,12 +111,12 @@ public class Router extends Device{
      * @param numberOfInterfaces the amount of interfaces our router will have
      * @return the created Router object
      */
-    public Router createRouter(int numberOfInterfaces)
+    public static Router createRouter(int numberOfInterfaces)
     {
         Router router = new Router();
         for (int i = 0; i < numberOfInterfaces; i++)
         {
-            router.interfaces().add(new RouterInterface(this));
+            router.interfaces().add(new DeviceInterface(router));
         }
         return router;
     }
@@ -155,7 +138,7 @@ public class Router extends Device{
         //look for the longest subnet match between interfaces ip and the destination ip
         //find the mac of the destination device or next hop
         //assemble the new frame and forward it through the appropriate interface
-        RouterInterface routerInterface = findLongestSubnetMatch(packet.getDestIP());
+        DeviceInterface routerInterface = findLongestSubnetMatch(packet.getDestIP());
         //we will forward through this
         //TODO implement a way to resolve the new MAC --> run ARP
         String resolvedMAC = new String();
@@ -172,10 +155,10 @@ public class Router extends Device{
      * @param ip the 32 bit ip address we search the longest match to from the msb
      * @return the RouterInterface with the longest subnet match. 
      */
-    private RouterInterface findLongestSubnetMatch(int ip)
+    private DeviceInterface findLongestSubnetMatch(int ip)
     {
         ArrayList<Integer> subnetMatchLengths = new ArrayList();
-        for (RouterInterface routerInterface : interfaces)
+        for (DeviceInterface routerInterface : interfaces)
         {
             subnetMatchLengths.add(findMatchLength(ip, routerInterface.ip()));
         }
