@@ -1,5 +1,4 @@
 model\layer3\IPPacket.class
-model\layer3\Router$RouterInterface.class
 model\layer2\MAC.class
 model\layer4\UDPDatagram.class
 model\Protocol.class
@@ -7,17 +6,18 @@ model\IPredacted$IPType.class
 model\devices\Device.class
 model\Data.class
 model\layer2\Frame.class
+main\Main.class
 model\IPredacted.class
 model\DNS.class
 model\layer2\Layer2Link.class
 model\devices\Endpoint.class
 model\layer2\Switch.class
-mininetworksim\Main.class
 model\layer2\Layer2Port.class
 model\Network.class
 model\DHCP.class
 model\layer3\Router.class
 model\layer3\ARPPacket.class
+model\layer3\DeviceInterface.class
 model\layer3\Router$Route.class
 model\layer3\Packet.class
 model\devices\DHCPServer.class
