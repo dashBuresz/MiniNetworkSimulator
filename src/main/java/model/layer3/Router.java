@@ -135,45 +135,32 @@ public class Router extends Device{
         Frame frame = recievedFrames.pop();
 
         Packet packet = frame.packet();
+        packets.add(packet);
         //look for the longest subnet match between interfaces ip and the destination ip
         //find the mac of the destination device or next hop
         //assemble the new frame and forward it through the appropriate interface
-        DeviceInterface routerInterface = findLongestSubnetMatch(packet.getDestIP());
-        //we will forward through this
-        //TODO implement a way to resolve the new MAC --> run ARP
-        String resolvedMAC = new String();
-        //1. find longest subnet match
-        //forward on that interface
-        //TODO resolve the MAC
-        Frame assembledFrame = Frame.assembleFrame(packet, frame.sourceMAC(), resolvedMAC);
-        routerInterface.port.send(assembledFrame);
+        Route choosenRoute = findIdealRoute(packet.getDestIP());
 
-        packets.add(frame.packet());
     }
     /**
-     * Finds the RouterInterface associated with the longest subnet match
-     * @param ip the 32 bit ip address we search the longest match to from the msb
-     * @return the RouterInterface with the longest subnet match. 
+     * Finds the Route associated with the longest subnet match,
+     * @param ip the 32 bit ip address we search the longest subnet match to from the msb
+     * @return the Route with the longest subnet match. 
      */
-    private DeviceInterface findLongestSubnetMatch(int ip)
+    private Route findIdealRoute(int ip)
     {
-        ArrayList<Integer> subnetMatchLengths = new ArrayList();
-        for (DeviceInterface routerInterface : interfaces)
+        Route idealRoute = routingTable.get(0);
+        int longestMatch = 0;
+        for (Route route : routingTable)
         {
-            subnetMatchLengths.add(findMatchLength(ip, routerInterface.ip()));
-        }
-        //find the longest match
-        int greatestMatchLength = subnetMatchLengths.get(0);
-        int greatestMatchIdx = -1;
-        for(int i = 0; i < subnetMatchLengths.size(); i++)
-        {
-            if (greatestMatchLength < subnetMatchLengths.get(i)) 
+            int routeMatchLength = findMatchLength(route.getNetworkAddr(), ip);
+            if (longestMatch < routeMatchLength && idealRoute.getSubnetMaskBinarized() < route.getSubnetMaskBinarized()) 
             {
-                greatestMatchLength = subnetMatchLengths.get(i);
-                greatestMatchIdx = i;
+                longestMatch = routeMatchLength;
+                idealRoute = route;
             }
         }
-        return interfaces.get(greatestMatchIdx);
+        return idealRoute;
     }
     /**
      * This method uses bitshifting to check the length of match between too integers or in this case 32 bit ip addresses, from the msb
@@ -190,13 +177,22 @@ public class Router extends Device{
         //for readability's sake
         int inverseDistanceVector = ~distanceVector;    //all matches = 1, different = 0
         //moving mask from msb, we calculate the weight until we find the first 0
-        int weight = 0;
-        for (int i = 0; i < Integer.SIZE; i++)
+        return unsignedWeight(inverseDistanceVector);
+    }
+    /**
+     * This method uses Kernighan's algorithm to calculate the set bits in a number, treating the number as unsigned. 
+     * @param number the nember whos set bits we count
+     * @return the number of 1 bits in the integer
+     */
+    private static int unsignedWeight(int number)
+    {
+        //the amount of loops equal to the set bits within the integer
+        int count = 0;
+        while (number != 0)
         {
-            if (((inverseDistanceVector >> i) & 1 )== 1) weight++;
-            else return weight;
+            number &= (number -1);
+            count++;
         }
-        //return the weight
-        return weight;
+        return count;
     }
 }
