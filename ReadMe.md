@@ -67,10 +67,14 @@ Remote networks
 ### Where are we at?
 > [!NOTE]
 > Currently ongoing work considerations
+- **In General Next Big Steps**
+    - Figure out and implement broadcast and ARP for all types of devices
+    - Implement the CLI so we can start interacting with the program and configuring devices
+    - Implement Ping command to test sending frames and packets between endpouints, and other device behaviours. 
 - **Router**
     - Currently implementing the basic router framework, the initialization of a router and then ofc 
         - [X] decapsualtion 
-        - [ ] encapsulation 
+        - [X] encapsulation 
         - [ ] routing, routing tables
         - [ ] time ticking with packet and frame processing
 - Device
@@ -92,7 +96,6 @@ Remote networks
 - Router class WIP
     - To Implement 
         - ARP
-        - Routing tables
 - Data class not implemented
 - Protocol class not implemented
 - UDPDatagram class WIP
