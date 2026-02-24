@@ -140,7 +140,13 @@ public class Router extends Device{
         //find the mac of the destination device or next hop
         //assemble the new frame and forward it through the appropriate interface
         Route choosenRoute = findIdealRoute(packet.getDestIP());
+        //
+        //assemble the new frame
+        //source address: the forwarding interface
+        //destination address: the recieving interface
+        Frame assembledFrame = Frame.assembleFrame(packet, "<RESOLVED MAC PLACEHODLER>", choosenRoute.getInterface().mac());
 
+        //now we forward on the appropriate interface
     }
     /**
      * Finds the Route associated with the longest subnet match,
