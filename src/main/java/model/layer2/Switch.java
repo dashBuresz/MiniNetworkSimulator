@@ -29,6 +29,7 @@ public class Switch extends Device{
         frames = new ArrayDeque<>();
     }
     public Layer2Port getPort(int portId){return layer2Ports.get(portId);}
+
     public void addConnection(String deviceMACAddr) 
     {
         //we look through the ports, if a port is not associated with a device, we can assign it to the new device. 
@@ -50,6 +51,10 @@ public class Switch extends Device{
         //we can implement time ticking here later too
         //for now handling a single frame each time this method is called will do
         Frame frame = frames.pop();
+        if(frame.destinationMAC().equals("FF:FF:FF:FF:FF:FF"))
+        {
+            layer2Ports.forEach(layer2Port -> layer2Port.send(frame));
+        }
         if(macAddrTable.containsValue(frame.destinationMAC()))
         {
             for (Map.Entry<Layer2Port, String> entry : macAddrTable.entrySet()) {

@@ -4,10 +4,9 @@ import java.util.ArrayList;
 import java.util.Random;
 
 public class MAC{
-    private static Random generator = new Random();
+    private static final Random generator = new Random();
     
     public static ArrayList<String> usedAddresses; 
-    
     private MAC()
     {
 
@@ -47,5 +46,9 @@ public class MAC{
             }
         } while (!validaddress);
         return address;
+    }
+    public static String generateBroadcastMAC()
+    {
+        return "FF:FF:FF:FF:FF:FF";
     }
 }
