@@ -145,7 +145,7 @@ public class Router extends Device{
         //source address: the forwarding interface
         //destination address: the recieving interface
         Frame assembledFrame = Frame.assembleFrame(packet, "<RESOLVED MAC PLACEHODLER>", choosenRoute.getInterface().mac());
-
+        choosenRoute.routerInterface.port.send(assembledFrame);
         //now we forward on the appropriate interface
     }
     /**

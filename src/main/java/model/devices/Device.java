@@ -1,5 +1,6 @@
 package model.devices;
 
+import model.SimulationEngine;
 import model.layer2.Frame;
 import model.layer2.Layer2Port;
 import model.layer2.MAC;
@@ -16,16 +17,19 @@ import model.layer2.MAC;
  */
 import model.layer3.DeviceInterface;
 public abstract class Device {
-    //Network Interface layer 2
+    //model
+    private SimulationEngine simulationEngine;
+    //layer 2
     private final String macAddr;
-    //layer 2 getter setter
-
     //layer 3
     private int ipAddr;
 
-
+    //getter-setter
     public String mac() {return macAddr;}
     public int ip() {return ipAddr;}
+    public void setIP(int ip){ipAddr = ip;}
+    public SimulationEngine simulationEngine() {return simulationEngine;}
+    public void setSimulationEngine(SimulationEngine engine){simulationEngine = engine;}
 
     public Device() 
     {
@@ -40,5 +44,4 @@ public abstract class Device {
      */
     public abstract void recieveFrame(Frame frame, Layer2Port port);
     //do we need this? or just a dhcp discover call?
-    public void setIP(int ip){ipAddr = ip;}
 }

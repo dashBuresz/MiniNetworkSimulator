@@ -4,7 +4,8 @@ import java.util.HashSet;
 
 public class Layer2Link {
     HashSet<Layer2Port> ports;
-
+    //TODO elaborate this in the future
+    final double delay = 0.5;       //for initial concept 
     public Layer2Link(HashSet<Layer2Port> endpoints) {
         if (endpoints.size() == 2) ports = endpoints;
     }
